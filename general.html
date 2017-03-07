@@ -1,0 +1,57 @@
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<h3>Distribution of the \(j^{th}\) Order Statistic</h3>
+
+<p>
+The pdf of \(Y_{(j)}\) is given by
+$$f_{Y_{(j)}}(y)=n\binom{n-1}{j-1}f_Y(y)\left[F_Y(y)\right]^{j-1}\left[1-F_Y(y)\right]^{n-j}$$
+</p>
+
+<p>
+As with the min and the max, we can consider a counting argument.
+<ul>
+	<li> n = # of ways to select which sample member is the \(j^{th}\) smallest. </li>
+	<li> \(f_y(y)\) is the pdf for the sample member that is the \(j^{th}\) smallest.</li>
+	<li> \(\binom{n-1}{j-1}\) = # of ways to select the j-1 sample members that are smaller from the remaining n-1 sample members.</li>
+	<li> \(\left[F_Y(y)\right]^{j-1}\) corresponds to having j-1 of the sample members less than the \(j^{th}\) smallest.</li>
+	<li> Since order is not important, there is only 1 way to select the n-j remaining sample members to be larger from the remaining n-j members.</li>
+	<li> \(\left[1-F_Y(y)\right]^{n-j}\) corresponds to having n-j of the sample members greater than the \(j^{th}\) smallest.</li>
+</ul>
+</p>
+
+<p>
+Alternatively, we can consider the multinomial distribution as an explanation for this pdf.
+</p>
+
+<h5> Recall the Multinomial Distribution:</h5>
+Setup - 
+<ul>
+	<li> We have a fixed number (\(m\)) of identical trials.</li>
+	<li> Each trial has exactly k mutually exclusive outcomes.</li>
+	<li> The probability a trial falls in category i is \(p_i\), assumed constant across all trials, and \(\sum_{i=1}^{k}p_i=1\).</li>
+</ul>
+If \(X_i\) = # of trials taking on category i, i=1,...,k then the random vector \((X_1, X_2, ...., X_k)\sim Multinomial(m,p_1,p_2,...,p_k)\).  The pmf is given by
+$$p_{X_1,X_2,...,X_k}(x_1,x_2,...,x_k)=\frac{m!}{x_1!x_2!...x_k!}p_1^{x_1}p_2^{x_2}...p_k^{x_k}$$
+where \(0 < X_i < k\) for all i and \(\sum_{i=1}^{k}X_i=m\).
+
+<br><br>
+
+<h5>How to apply this here?</h5>
+Consider our number of trials to be our sample size \(n\).  For each observation we have 3 categories (let \(\epsilon\) be a very small number):
+<ol> 
+	<li> Observation is less than \(y-\epsilon/2\)</li>
+	<li> Observation is between \(y-\epsilon/2\) and \(y+\epsilon/2\)</li>
+	<li> Observation is greater than \(y+\epsilon/2\)</li>
+</ol>
+The probability of falling into each category is
+<ol>
+	<li> \(p_1\) = P(observation in category 1) = \(F_Y(y-\epsilon/2)\approx F_Y(y)\)</li>
+	<li> \(p_2\) = P(observation in category 2) \(\approx \epsilon f_Y(y)\)</li>
+	<li> \(p_3\) = P(observation in category 3) = \(1-F_{Y}(y+\epsilon/2)\approx 1-F_Y(y)\)</li>
+</ol>
+Now if we find the probability of getting exactly \(j\) observations in category 1, exactly 1 observation in category 2, and exactly n-j observations in category 3, we will have our pdf above!
+$$P(X_1=j-1,X_2=1,X_3=n-j) = \frac{n!}{(j-1)!1!(n-j)!}\left[F_Y(y)\right]^{j-1}\left[f_Y(y)\right]^1\left[1-F_Y(y)\right]^{n-j}$$
+$$=n\binom{n-1}{j-1}f_Y(y)\left[F_Y(y)\right]^{j-1}\left[1-F_Y(y)\right]^{n-j}$$

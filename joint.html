@@ -1,0 +1,52 @@
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<h3>Joint Distribution of the \(i^{th}\) and \(j^{th}\) Order Statistics</h3>
+
+<p>
+The joint distribuiton of \(Y_{(i)}\) and \(Y_{(j)}\) is
+$$f_{Y_{(i)},Y_{(j)}}(u,v)=nf_Y(u)(n-1)f_Y(v)\binom{n-2}{i-1,j-1-i,n-j}\left[F_Y(u)\right]^{i-1}\left[F_Y(v)-F_Y(u)\right]^{j-1-i}\left[1-F_Y(v)\right]^{n-j}$$
+</p>
+
+<p>
+Let's break this down with a counting argument similar to the univariate case (without loss of generality assume i < j):
+<ul>
+	<li> n = # of ways to choose \(i^{th}\) smallest.</li>
+	<li> \(f_Y(u)\) is the pdf for the \(i^{th}\) smallest.</li>
+	<li> n-1 = # of ways to choose \(j^{th}\) smallest from remaining sample members.</li>
+	<li> \(f_Y(v)\) is the pdf for the \(j^{th}\) smallest.</li>
+	<li> \(\binom{n-2}{i-1,j-1-i,n-j}\) = # of ways to partition the remaining n-2 observations to be less than \(Y_{(i)}\), between \(Y_{(i)}\) and \(Y_{(j)}\), and greater than \(Y_{(j)}\).</li>
+	<li> \(\left[F_Y(u)\right]^{i-1}\) corresponds to having i-1 sample members less than \(Y_{(i)}\).</li>
+	<li> \(\left[F_Y(v)-F_Y(u)\right]^{j-1-i}\) corresponds to having j-1-i sample members between \(Y_{(i)}\) and \(Y_{(j)}\).</li>
+	<li> \(\left[1-F_Y(v)\right]^{n-j}\) corresponds to having n-j sample members larger than \(Y_{(j)}\).</li>
+</ul>
+</p>
+
+
+<h5>Multinomial Argument</h5>
+Consider our number of trials to be our sample size \(n\).  For each observation we have 5 categories (let \(\epsilon\) be a very small number):
+<ol> 
+	<li> Observation is less than \(u-\epsilon/2\).</li>
+	<li> Observation is between \(u-\epsilon/2\) and \(u+\epsilon/2\).</li>
+	<li> Observation is between \(u+\epsilon/2\) and \(v-\epsilon/2\).
+	<li> Observation is between \(v-\epsilon/2\) and \(v+\epsilon/2\).</li>
+	<li> Observation is greater than \(v+\epsilon/2\)</li>
+</ol>
+The probability of falling into each category is
+<ol>
+	<li> \(p_1\) = P(observation in category 1) = \(F_Y(u-\epsilon/2)\approx F_Y(u)\)</li>
+	<li> \(p_2\) = P(observation in category 2) \(\approx \epsilon f_Y(u)\)</li>
+	<li> \(p_3\) = P(observation in category 3) = \(F_Y(v-\epsilon/2)-F_Y(u+\epsilon/2)\)
+	<li> \(p_4\) = P(observation in category 4) \(\approx \epsilon f_Y(v)\)</li>
+	<li> \(p_5\) = P(observation in category 5) = \(1-F_{Y}(v+\epsilon/2)\approx 1-F_Y(v)\)</li>
+</ol>
+Now if we find the probability of getting exactly \(i-1\) observations in category 1, exactly 1 observation in category 2, exactly \(j-1-i\) observations in category 3, exactly 1 observation in category 4, and exactly \(n-j\) observations in category 5, we will have our pdf above!
+
+<br><br>
+
+This argument could easily be extended to find the joint distribution of three or more order statistics!
+
+<br><br>
+

@@ -1,0 +1,41 @@
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h3> Distribution of the Maximum Order Statistic</h3>
+<p> 
+We can use the cdf method to find the distribution of \(Y_{(n)}\).
+$$F_{Y_{(n)}}(y)=P(Y_{(n)}\leq y)$$
+For the largest to be less than or equal to \(y\), we need all \(Y_i\) to be less than or equal to \(y\).
+$$\implies = P(Y_1\leq y,Y_2\leq y,...,Y_n\leq y)$$
+$$ = P(Y_1\leq y)P(Y_2\leq y)...P(Y_n\leq Y)$$
+(since the RVs are independent)
+$$= F_{Y_1}(y)F_{Y_2}(y)...F_{Y_n}(y) = \left[F_Y(y)\right]^n$$ (since the RVs are identically distributed).
+
+Now if we want the pdf we can differentiate (we must use the chain rule here):
+$$f_{Y_{(n)}}(y)=\frac{d}{dy}\left[F_{Y}(y)\right]^n = n\left[F_Y(y)\right]^{n-1}f_Y(y)$$
+</p>
+
+We can also think about this pdf from a "counting" persepective.  
+<ul>
+	<li> n = # of ways to select which sample member is the largest. </li>
+	<li> \(\left[F_Y(y)\right]^{n-1}\) corresponds to having n-1 of the sample members less than the max.</li>
+	<li> \(f_y(y)\) is the pdf for the sample member that is the max.</li>
+</ul>
+
+<br>
+
+<h4> Example: \(Y_i^{iid}\sim Beta(2,2)\) </h4>
+
+$$f_Y(y)=6y(1-y)~~~0 < y < 1~~~~~~~~~~~~~F_Y(y)=3y^2-2y^3~~~~0 <  y < 1$$
+
+Distribution of the max is then
+$$f_{Y_{(n)}}(y)=n\left[3y^2-2y^3\right]^{n-1}6y(1-y) = 6n(3-2y)^{n-1}y^{2n-1}(1-y)~~~~~0 < y < 1$$
+Note: 
+<ul>
+	<li> if \(n=1\) we get that the max follows a Beta(2,2), why does this make sense?</li>
+</ul>
+
+<br><br>
+
+

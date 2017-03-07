@@ -1,0 +1,39 @@
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<h3> Distribution of the Minimum Order Statistic</h3>
+<p> 
+We can also use the cdf method to find the distribution of \(Y_{(1)}\).
+$$F_{Y_{(1)}}(y)=P(Y_{(1)}\leq y)=1-P(Y_{(1)}>y)$$
+For the smallest to be larger than \(y\), all the \(Y_i\) must be larger than \(y\).
+$$\implies = 1- P(Y_1> y,Y_2> y,...,Y_n> y)$$
+$$ = 1- (1-P(Y_1\leq y))(1-P(Y_2\leq y))...(1-P(Y_n\leq Y))$$
+(since the RVs are independent)
+$$= 1-(1-F_{Y_1}(y))(1-F_{Y_2}(y))...(1-F_{Y_n}(y)) = 1-\left[1-F_Y(y)\right]^n$$ (since the RVs are identically distributed).
+
+Now if we want the pdf we can differentiate (we must use the chain rule here):
+$$f_{Y_{(1)}}(y)=\frac{d}{dy}\left(1-\left[1-F_{Y}(y)\right]^n\right) = -n\left[1-F_Y(y)\right]^{n-1}(-f_Y(y)) = n\left[1-F_Y(y)\right]^{n-1}f_Y(y)$$
+</p>
+
+We can also think about this pdf from a "counting" persepective.  
+<ul>
+	<li> n = # of ways to select which sample member is the smallest. </li>
+	<li> \(\left[1-F_Y(y)\right]^{n-1}\) corresponds to having n-1 of the sample members greater than the min.</li>
+	<li> \(f_y(y)\) is the pdf for the sample member that is the min.</li>
+</ul>
+
+<br>
+
+<h4> Example: \(Y_i^{iid}\sim Beta(2,2)\) </h4>
+
+$$f_Y(y)=6y(1-y)~~~0 < y < 1~~~~~~~~~~~~~F_Y(y)=3y^2-2y^3~~~~0 <  y < 1$$
+
+Distribution of the min is then
+$$f_{Y_{(1)}}(y)=n\left[1-(3y^2-2y^3)\right]^{n-1}6y(1-y) = 6ny(1-y)\left[1-3y^2+2y^3\right]^{n-1}~~~~~0 < y < 1$$
+Note: 
+<ul>
+	<li> if \(n=1\) we get that the min follows a Beta(2,2), why does this make sense?</li>
+</ul>
+
+<br><br>
